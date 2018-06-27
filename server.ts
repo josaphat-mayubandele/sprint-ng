@@ -1,7 +1,7 @@
 import * as express from 'express';
 
 // Import WelcomeController from controllers entry point
-import { WelcomeController } from './controllers';
+import { WelcomeController } from './back-end/controllers';
 
 // Create a new express application instance
 const app: express.Application = express();
