@@ -1,10 +1,62 @@
-# FirstApp
+# sprint-ng written in Angular6 and Bootstrap 4
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-## Development server
+## [Demo](https://sprint-ng.herokuapp.com/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+
+### Introduction
+
+Provides fast, reliable and extensible starter for the development of projects.
+
+`sprint-ng Front-End with Angular 6` provides the following features:
+
+*   Developed using boostrap-v4.0.0
+*   angular-v6.0.0
+*   angular/cli-v6.0.0
+*   [ng-bootstrap-v2.1.2](https://github.com/ng-bootstrap/)
+*   Following the best practices.
+*   Ahead-of-Time compilation support.
+*   Production and development builds.
+*   Authentication: OpenID Connect
+
+`sprint-ng Back-End with NodeJs` provides the following features:
+
+*   ExpressJs
+*   Mongoose
+
+### How to start
+
+**Note** that this seed project requires **node >=v8.11.3 and npm >=5.6.0.
+
+In order to start the project use:
+
+```bash
+
+# Open terminal
+
+$ git clone https://github.com/josaphat-mayubandele/sprint-ng.git
+$ cd sprint-ng
+
+### client front-end Angular ###
+
+# install the project's client dependencies
+$ npm install
+# watches your files and uses livereload by default run `npm start` for a dev server. 
+# Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+$ npm start
+# prod build, will output the production application in `dist`
+# the produced code can be deployed (rsynced) to a remote server
+$ npm run build
+
+### server Back-End NodeJS Express ###
+
+# open the server Back-End project create with NodeJs
+# Open new terminal
+$ npm run server
+# watches your files and uses livereload by default run `npm start` for a dev server. 
+# Navigate to `http://localhost:3000/`.
+```
 
 ## Code scaffolding
 
