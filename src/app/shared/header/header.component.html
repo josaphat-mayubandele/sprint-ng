@@ -1,29 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="nav-wrapper container">
-    <a class="brand-logo" href="#" id="logo-container">Navbar</a>
+    <a class="brand-logo" id="logo-container">Navbar</a>
 
 
-    <div class="navbar-nav right  ">
-
-      <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-          <a class="nav-link" href="#">sprint</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">logout</a>
-        </li>
-      </ul>
-
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    <div class="navbar-nav">
+      <div class="navbar-toggleable-xs collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="auth.isAuthenticated()">sprints</a>
+          </li>
+          <li class="nav-item" *ngIf="!auth.isAuthenticated()">
+            <a class="nav-link" (click)="auth.login()">login</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.isAuthenticated()">
+            <a class="nav-link" (click)="auth.logout()">logout</a>
+          </li>
+        </ul>
+      </div>
+      <button class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-
     </div>
   </div>
 </nav>

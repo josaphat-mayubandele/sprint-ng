@@ -1,21 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+
+import { RoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { RoutingModule } from './app.routing';
 import { HeaderComponent } from './shared/header/header.component';
-import { AuthComponent } from './auth/auth.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+
+import { AuthService } from './auth/auth.service';
+import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    CallbackComponent
   ],
-  imports: [BrowserModule, RoutingModule],
-  providers: [],
+  imports: [BrowserModule, FormsModule, HttpModule, RoutingModule],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
