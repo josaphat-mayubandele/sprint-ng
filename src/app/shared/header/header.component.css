@@ -1,7 +1,5 @@
 /* header navbar */
-.right {
-  display: contents;
-}
+
 .navbar {
   background-color: cornflowerblue !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -70,6 +68,7 @@ nav i.material-icons {
 nav .nav-wrapper {
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 @media only screen and (min-width: 993px) {
@@ -108,8 +107,6 @@ nav .brand-logo.center {
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
   }
   nav .brand-logo.left,
   nav .brand-logo.right {
@@ -284,4 +281,10 @@ a {
   color: rgb(255, 255, 255);
   text-transform: capitalize;
   background-color: #f8b146;
+}
+/* container */
+@media only screen and (min-width: 601px) {
+  .container {
+    max-width: 1600px;
+  }
 }
