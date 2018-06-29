@@ -6,7 +6,7 @@ import * as cookieParser from 'cookie-parser';
 // Import WelcomeController from controllers entry point
 import { WelcomeController } from './back-end/controllers';
 // Import database configuration
-import { DBConfig } from './back-end/database/db.config';
+import { DBConfig } from './back-end/config/db.config';
 
 // Create a new express application instance
 const app: express.Application = express();
