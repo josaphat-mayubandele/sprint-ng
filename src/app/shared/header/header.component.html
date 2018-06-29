@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="nav-wrapper container">
-    <a class="brand-logo" id="logo-container">Navbar</a>
+    <a class="brand-logo" [routerLink]="['']" id="logo-container">Navbar</a>
 
 
     <div class="navbar-nav">
       <div class="navbar-toggleable-xs collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto ">
           <li class="nav-item">
-            <a class="nav-link" *ngIf="auth.isAuthenticated()">sprints</a>
+            <a class="nav-link" [routerLink]="['/sprints']" *ngIf="auth.isAuthenticated()">sprints</a>
           </li>
           <li class="nav-item" *ngIf="!auth.isAuthenticated()">
             <a class="nav-link" (click)="auth.login()">login</a>
