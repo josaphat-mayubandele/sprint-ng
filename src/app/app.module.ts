@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { RoutingModule } from './app.routing';
+import { PastSprintsModule } from './past-sprints/past-sprints.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -12,7 +13,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
-import { PastSprintsComponent } from './past-sprints/past-sprints.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,15 @@ import { PastSprintsComponent } from './past-sprints/past-sprints.component';
     HeaderComponent,
     WelcomeComponent,
     CallbackComponent,
-    PastSprintsComponent
+    PageNotFoundComponent
   ],
-  imports: [BrowserModule, FormsModule, HttpModule, RoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    PastSprintsModule,
+    RoutingModule
+  ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })
