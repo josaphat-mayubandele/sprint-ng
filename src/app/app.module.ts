@@ -12,13 +12,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
+import { PastSprintsComponent } from './past-sprints/past-sprints.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     WelcomeComponent,
-    CallbackComponent
+    CallbackComponent,
+    PastSprintsComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, RoutingModule],
   providers: [AuthService],
