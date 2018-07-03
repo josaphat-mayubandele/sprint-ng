@@ -9,25 +9,39 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Length</th>
-      <th scope="col">Date</th>
-      <th scope="col">Start Finish</th>
-      <th scope="col">Description</th>
+      <th scope="col">
+        <a href (click)="sortTable('Length')">Length</a>
+      </th>
+      <th scope="col">
+        <a href (click)="sortTable('date')">Status</a>
+      </th>
+      <th scope="col">
+        <a href (click)="sortTable('date')">Date</a>
+      </th>
+      <th scope="col">
+        <a href (click)="sortTable('start-Finish')">Start</a>
+      </th>
+      <th scope="col">
+        <a href (click)="sortTable('start-Finish')">Finish</a>
+      </th>
+      <th scope="col">
+        <a href (click)="sortTable('description')">Description </a>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+    <tr *ngFor="let pastSprint of currentpastsprint">
+      <td>{{pastSprint.name}}</td>
+      <td>{{pastSprint.status | titlecase}}</td>
+      <td>{{pastSprint.createdAt | date: 'dd/MM/yyyy'}}</td>
+      <td>{{pastSprint.startedAt | date: 'hh:mm:ss a'}}</td>
+      <td>{{pastSprint.finishedAt | date: 'hh:mm:ss a'}}</td>
+      <td>{{pastSprint.description}}</td>
     </tr>
   </tbody>
 </table>
 
-<div class="container tableContent">
+<div class="container tableContent" *ngIf="havePagination">
   <span class="per-pages"> </span>
   <ul class="pagination justify-content-end">
 
@@ -54,7 +68,9 @@
     </li>
   </ul>
 </div>
-<div class=" row justify-content-md-center">
+
+<!-- Button delete -->
+<div class=" row justify-content-md-center" *ngIf="canDeleted">
   <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#ModalCenter">Delete All</button>
 </div>
 
