@@ -7,13 +7,15 @@ import * as auth0 from 'auth0-js';
 
 @Injectable()
 export class AuthService {
+  user: any;
+  id_token: any;
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
     responseType: 'token id_token',
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid'
+    scope: 'openid email profile'
   });
 
   constructor(public router: Router) {}
@@ -43,6 +45,8 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    this.set_email();
+    this.id_token = authResult.idToken;
   }
 
   public logout(): void {
@@ -59,5 +63,24 @@ export class AuthService {
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     return new Date().getTime() < expiresAt;
+  }
+
+  public set_email(): void {
+    // verifie l'existance de access token
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access Token must exist to fetch profile');
+    }
+    // recuperer les profiles du courant utilisateur
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        localStorage.setItem('user_email', profile.email);
+      }
+    });
+  }
+  public getUsername() {
+    // access token de username
+    const accessToken = localStorage.getItem('user_email');
+    return;
   }
 }
