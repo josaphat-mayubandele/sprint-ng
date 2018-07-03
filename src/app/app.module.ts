@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { RoutingModule } from './app.routing';
 import { PastSprintsModule } from './past-sprints/past-sprints.module';
@@ -28,7 +29,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     HttpModule,
     PastSprintsModule,
-    RoutingModule
+    RoutingModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
