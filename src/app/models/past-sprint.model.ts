@@ -1,12 +1,12 @@
-export class PastSprint {
+export class PastSprintModel {
   name: string;
-  duratin: string;
+  duration: number;
   status: string;
-  prgress: string;
+  progress: number;
   descriptin: string;
-  ntify: string;
+  notify: Boolean;
   user: string;
-  createdAt: string;
-  startedAt: string;
-  finishedAt: string;
+  createdAt: Date;
+  startedAt: Date;
+  finishedAt: Date;
 }
