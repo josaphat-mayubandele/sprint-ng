@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 (window as any).global = window;
 
 @Injectable()
 export class AuthService {
-  user: any;
   id_token: any;
+  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
@@ -25,6 +26,7 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
+    this.loggedIn.next(true);
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
@@ -46,14 +48,15 @@ export class AuthService {
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
     this.set_email();
-    this.id_token = authResult.idToken;
   }
 
-  public logout(): void {
+  public logout() {
+    this.loggedIn.next(false);
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('user_email');
     // Go back to the home route
     this.router.navigate(['/']);
   }
@@ -78,9 +81,8 @@ export class AuthService {
       }
     });
   }
-  public getUsername() {
-    // access token de username
-    const accessToken = localStorage.getItem('user_email');
-    return;
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable(); // {2}
   }
 }
