@@ -15,6 +15,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NewSprintModule } from './new-sprint/new-sprint.module';
+import { OngoingSprintModule } from './ongoing-sprint/ongoing-sprint.module';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
+    NewSprintModule,
+    OngoingSprintModule,
     PastSprintsModule,
-    RoutingModule,
-    HttpClientModule
+    RoutingModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
