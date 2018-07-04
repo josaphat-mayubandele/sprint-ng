@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { RoutingModule } from './app.routing';
 import { PastSprintsModule } from './past-sprints/past-sprints.module';
@@ -28,6 +27,7 @@ import { OngoingSprintModule } from './ongoing-sprint/ongoing-sprint.module';
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     NewSprintModule,
