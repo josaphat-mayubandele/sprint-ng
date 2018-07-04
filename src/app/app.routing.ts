@@ -7,12 +7,18 @@ import { CallbackComponent } from './callback/callback.component';
 import { AuthGuard } from './auth/auth.guard';
 import { PastSprintsComponent } from './past-sprints/past-sprints.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NewSprintComponent } from './new-sprint/new-sprint.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   {
     path: 'sprints',
     component: PastSprintsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'new',
+    component: NewSprintComponent,
     canActivate: [AuthGuard]
   },
   { path: 'callback', component: CallbackComponent },
