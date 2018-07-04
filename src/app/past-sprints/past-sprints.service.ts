@@ -9,7 +9,6 @@ import { PastSprintModel } from '../models/past-sprint.model';
   providedIn: 'root'
 })
 export class PastSprintsService {
-  profile: any;
   private apiUrl = 'http://localhost:3000/api/getsprint';
   constructor(private http: HttpClient, private auth: AuthService) {}
 
@@ -18,5 +17,9 @@ export class PastSprintsService {
     return this.http.get<PastSprintModel>(
       `${this.apiUrl}:${this.auth.id_token}`
     );
+  }
+
+  deleteAll() {
+    return this.http.delete(`${this.apiUrl}:${this.auth.id_token}`);
   }
 }

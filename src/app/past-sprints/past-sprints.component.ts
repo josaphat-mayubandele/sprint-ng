@@ -26,4 +26,8 @@ export class PastSprintsComponent implements OnInit {
       this.currentpastsprint = data;
     });
   }
+
+  deleteAll() {
+    this.sprintService.deleteAll();
+  }
 }
