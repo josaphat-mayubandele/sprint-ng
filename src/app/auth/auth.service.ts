@@ -26,15 +26,15 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
-    this.loggedIn.next(true);
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        this.loggedIn.next(true);
         this.router.navigate(['/sprints']);
       } else if (err) {
-        this.router.navigate(['/sprints']);
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
+        this.router.navigate(['/bug']);
       }
     });
   }
@@ -63,9 +63,23 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     // Check whether the current time is past the
-    // access token's expiry time
+    // access all token's
+    const access_token = localStorage.getItem('access_token');
+    const id_token = localStorage.getItem('access_token');
+    const expires_at = localStorage.getItem('id_token');
+    const user_email = localStorage.getItem('user_email');
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
-    return new Date().getTime() < expiresAt;
+    // authentifier si tout access tokens existe
+    if (
+      access_token &&
+      id_token &&
+      expires_at &&
+      user_email &&
+      new Date().getTime() < expiresAt
+    ) {
+      return true;
+    }
+    return false;
   }
 
   public set_email(): void {
