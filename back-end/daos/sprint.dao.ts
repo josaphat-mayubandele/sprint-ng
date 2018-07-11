@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-// export default pastSprintSchemaDAO;
+// export default sprintSchemaDAO;
 
-const pastSprintSchema = mongoose.Schema({
+const sprintSchema = mongoose.Schema({
   name: String,
   duration: Number,
   status: String,
@@ -14,6 +14,6 @@ const pastSprintSchema = mongoose.Schema({
   startedAt: Date,
   finishedAt: Date
 });
-const pastSprintSchemaDAO = mongoose.model('PastSprints', pastSprintSchema);
+const sprintSchemaDAO = mongoose.model('PastSprints', sprintSchema);
 
-export default pastSprintSchemaDAO;
+export default sprintSchemaDAO;
