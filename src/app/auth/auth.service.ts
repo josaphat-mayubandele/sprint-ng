@@ -10,15 +10,23 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AuthService {
   id_token: any;
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
-  auth0 = new auth0.WebAuth({
+  /*  auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
-    responseType: 'token id_token',
+    responseType: "token id_token",
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid email profile'
+    scope: "openid email profile"
   });
-
+*/
+  auth0 = new auth0.WebAuth({
+    clientID: 'QWgVl28tvgr2rKGdCa3KVa3XZ7MWMzSR',
+    domain: 'sprints.auth0.com',
+    responseType: 'token id_token',
+    audience: 'https://sprints.auth0.com/api/v2/',
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'openid profile'
+  });
   constructor(public router: Router) {}
 
   public login(): void {
@@ -47,6 +55,11 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem(
+      'current_user',
+      JSON.stringify(authResult.idTokenPayload)
+    );
+    this.setUsername();
     this.set_email();
   }
 
@@ -57,6 +70,7 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('user_email');
+    localStorage.removeItem('current_user');
     // Go back to the home route
     this.router.navigate(['/']);
   }
@@ -68,6 +82,7 @@ export class AuthService {
     const id_token = localStorage.getItem('access_token');
     const expires_at = localStorage.getItem('id_token');
     const user_email = localStorage.getItem('user_email');
+    const current_user = localStorage.getItem('current_user');
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     // authentifier si tout access tokens existe
     if (
@@ -75,6 +90,7 @@ export class AuthService {
       id_token &&
       expires_at &&
       user_email &&
+      current_user &&
       new Date().getTime() < expiresAt
     ) {
       return true;
@@ -91,12 +107,21 @@ export class AuthService {
     // recuperer les profiles du courant utilisateur
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
-        localStorage.setItem('user_email', profile.email);
+        // localStorage.setItem('user_email', profile.email);
       }
     });
   }
 
+  public setUsername(): void {
+    const currentUser = JSON.parse(localStorage.current_user);
+    localStorage.setItem('user_email', currentUser.nickname);
+  }
+
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
+  }
+  public userId() {
+    const currentUser = JSON.parse(localStorage.current_user);
+    return currentUser.sub;
   }
 }
