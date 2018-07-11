@@ -6,9 +6,9 @@ const sprintTemplateSchema = mongoose.Schema({
   status: String
 });
 
-const pastTemplateSchemaDAO = mongoose.model(
+const sprintTemplateSchemaDAO = mongoose.model(
   'SprintTemplate',
   sprintTemplateSchema
 );
 
-export default pastTemplateSchemaDAO;
+export default sprintTemplateSchemaDAO;

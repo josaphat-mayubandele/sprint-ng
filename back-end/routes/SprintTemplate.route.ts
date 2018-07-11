@@ -1,6 +1,6 @@
 // Export the express.Router() instance to be used by server.ts
 import { Router, Request, Response, NextFunction } from 'express';
-import pastTemplateController from '../controllers/PastTemplate.controller';
+import sprintTemplateController from '../controllers/SprintTemplate.controller';
 // const Heroes = require('../data');
 
 export class PastTemplate {
@@ -18,9 +18,9 @@ export class PastTemplate {
    * endpoints.
    */
   init() {
-    this.router.put('/create', pastTemplateController.create);
-    this.router.get('/get/', pastTemplateController.getAll);
-    this.router.delete('/delete/', pastTemplateController.deleteOne);
+    this.router.put('/create', sprintTemplateController.create);
+    this.router.get('/get/', sprintTemplateController.getAll);
+    this.router.delete('/delete/', sprintTemplateController.deleteOne);
   }
 }
 

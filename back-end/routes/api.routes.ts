@@ -1,6 +1,6 @@
 import * as express from 'express';
-import pastsprint from './PastSprint.route';
-import pastTemplate from './SprintTemplate.route';
+import sprint from './Sprint.route';
+import sprintTemplate from './SprintTemplate.route';
 // Creates and configures an ExpressJS web server.
 class Api {
   // ref to Express instance
@@ -25,8 +25,8 @@ class Api {
       });
     });
     this.express.use('/', router);
-    this.express.use('/v1/pastsprint', pastsprint);
-    this.express.use('/v1/pastTemplate', pastTemplate);
+    this.express.use('/v1/sprint', sprint);
+    this.express.use('/v1/sprintTemplate', sprintTemplate);
   }
 }
 
