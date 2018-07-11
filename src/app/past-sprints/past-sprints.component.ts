@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./past-sprints.component.css']
 })
 export class PastSprintsComponent implements OnInit {
-  currentpastsprint: PastSprints[] = []; // [] = [];
-  pastSprints: PastSprints[];
+  pastSprint$: PastSprints[] = []; // [] = [];
+  // pastSprints: PastSprints[];
   canDeleted: boolean;
   havePagination: boolean;
 
-  constructor(private sprintService: SprintsService, private router: Router) {}
+  constructor(private mysprints: SprintsService, private router: Router) {}
 
   ngOnInit() {
     this.getSprints();
@@ -23,14 +23,21 @@ export class PastSprintsComponent implements OnInit {
 
   // recevoir les sprint de l'utilisateur current
   getSprints() {
-    this.sprintService.get().subscribe(data => {
-      this.currentpastsprint = data.pastsprint;
+    this.mysprints.get().subscribe(data => {
+      this.pastSprint$ = data.pastsprint;
       console.log(data);
     });
+    if (this.pastSprint$) {
+      this.canDeleted = true;
+    } else {
+      this.canDeleted = false;
+    }
   }
 
   deleteAll() {
-    this.sprintService.deleteAll();
+    this.mysprints.deleteAll().subscribe(data => {
+      this.pastSprint$ = data.pastsprint;
+    });
   }
   newpage() {
     this.router.navigate([{ outlets: { popup: ['new'] } }]);

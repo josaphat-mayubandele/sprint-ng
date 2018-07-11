@@ -30,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pastSprint of currentpastsprint">
+    <tr *ngFor="let pastSprint of pastSprint$  ">
       <td>{{pastSprint.name}}</td>
       <td>{{pastSprint.status | titlecase}}</td>
       <td>{{pastSprint.createdAt | date: 'dd/MM/yyyy'}}</td>
@@ -41,7 +41,7 @@
   </tbody>
 </table>
 
-<div class="container tableContent" *ngIf="havePagination">
+<div class="container tableContent" *ngIf="!havePagination">
   <span class="per-pages"> </span>
   <ul class="pagination justify-content-end">
 
@@ -55,7 +55,7 @@
   </ul>
   <ul class="pagination justify-content-end">
     <li class="page-item">
-      <a class="page-link">Previous</a>
+      <a class="page-link" (click)='newpage()'>Previous</a>
     </li>
     <li class="page-item">
       <a class="page-link">1</a>
@@ -90,7 +90,7 @@
         <p> Delete to eliminate all records. </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="sortTable('date')">Yes</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="deleteAll()">Yes</button>
         <button type="button" class="btn btn-success" data-dismiss="modal">Non</button>
       </div>
     </div>
