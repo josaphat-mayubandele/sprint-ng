@@ -1,4 +1,4 @@
-import sprintTemplateDAO from '../daos/past-Template.dao';
+import sprintTemplateDAO from '../daos/sprint-Template.dao';
 class Setup {
   // Run configuration methods on the Express instance.
   status;
