@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
-    this.isLoggedIn$ = this.auth.isLoggedIn;
+    // this.isLoggedIn$ = this.auth.isAuthentificate;
     this.delay(0.1).then(any => {
       // your task after delay.
       this.username = localStorage.getItem('user_email');
