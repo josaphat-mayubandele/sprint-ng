@@ -6,7 +6,7 @@ import { connect } from 'mongoose';
 const db = {
   ADDRESS: 'localhost',
   PORT: 27017,
-  NAME: 'sprint-ng'
+  NAME: 'sprints_ng_josaphat'
 };
 
 export class DBConfig {
