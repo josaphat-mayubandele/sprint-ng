@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PastSprintsService } from './past-sprints.service';
+import { SprintsService } from '../services/sprints.service';
 import { PastSprintsComponent } from './past-sprints.component';
 
 @NgModule({
   imports: [CommonModule],
-  providers: [PastSprintsService],
+  providers: [SprintsService],
   declarations: [PastSprintsComponent]
 })
 export class PastSprintsModule {}
