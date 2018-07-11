@@ -1,15 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SprintsService } from '../services/sprints.service';
+import { SprintTemplateService } from '../services/sprint-template.service';
+import { SprintTemplate } from '../models/sprint-template.model';
+import { PastSprints } from '../models/past-sprint.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-sprint',
   templateUrl: './new-sprint.component.html',
   styleUrls: ['./new-sprint.component.css']
 })
 export class NewSprintComponent implements OnInit {
+  template: SprintTemplate[] = [];
+  selectedTemplate: SprintTemplate;
+  // sprintOption: PastSprints = {};
+  sprintDescription: any;
+  notify: Boolean;
+  showValidationAlert: Boolean;
 
-  constructor() { }
+  sprintOption: any = {};
+  cuurentTemplate: any = {};
+  constructor(
+    private templateData: SprintTemplateService,
+    private sprint: SprintsService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.sprintOption.notify = false;
+    this.getTemplate();
   }
 
+  // recevoir les sprint de l'utilisateur current
+  getTemplate() {
+    this.templateData.get().subscribe(data => {
+      this.template = data.pastTemplate;
+      console.log(this.template);
+    });
+  }
+
+  create() {
+    console.log(this.sprintOption.notify);
+    console.log(this.selectedTemplate);
+    this.sprintOption.createdAt = new Date();
+    this.sprintOption.name = this.selectedTemplate;
+    this.sprint.create(this.selectedTemplate, this.sprintOption);
+
+    this.router.navigate(['/ongoing']);
+  }
 }
