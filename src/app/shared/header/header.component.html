@@ -1,31 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-  <div fxLayout="row" class="container ">
-    <div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div fxFlex="55%">
-      <a class="brand-logo " [routerLink]="['']" id="logo-container">Sprint</a>
-    </div>
-    <div fxFlex="45%"></div>
-  </div>
+<div class="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div>
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation"
+          (click)="isCollapsed = !isCollapsed">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="brand-logo " [routerLink]="['']" id="logo-container">Sprint</a>
 
-  <div class="collapse navbar-collapse  " id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/new']" *ngIf="auth.isAuthenticated()">new</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/sprints']" *ngIf="auth.isAuthenticated()">sprints</a>
-      </li>
-      <li class="nav-item" *ngIf="!auth.isAuthenticated()">
-        <a class="nav-link " (click)="auth.login()">login</a>
-      </li>
-      <li class="nav-item" *ngIf="auth.isAuthenticated()">
-        <a class="nav-link" (click)="auth.logout()">logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+      </div>
+
+      <div class="navbar-toggleable-xs navbar-collapse" id="bd-main-nav" [attr.aria-expanded]="!isCollapsed" [ngClass]="{collapse: isCollapsed}">
+
+        <div class="navbar-left">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item" (click)="isCollapsed = true" routerLinkActive="active" *ngIf="auth.isAuthenticated()">
+              <a id="navbarNav" class="nav-link" [routerLink]="['/new']" *ngIf="auth.isAuthenticated()" routerLinkActive="active">
+                <span class="{{''}}"></span>new</a>
+            </li>
+            <li class="nav-item" (click)="isCollapsed = true" routerLinkActive="active" *ngIf="auth.isAuthenticated()">
+              <a id="navbarNav" class="nav-link" [routerLink]="['/sprints']" *ngIf="auth.isAuthenticated()" routerLinkActive="active">
+                sprints</a>
+            </li>
+            <li class="nav-item" (click)="isCollapsed = true" routerLinkActive="active" *ngIf="!auth.isAuthenticated()">
+              <a id="navbarNav" class="nav-link " (click)="auth.login()" routerLinkActive="active">
+                login</a>
+            </li>
+            <li class="nav-item" (click)="isCollapsed = true" routerLinkActive="active" *ngIf="auth.isAuthenticated()">
+              <a class="nav-link" (click)="auth.logout()" routerLinkActive="active">
+                logout</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</div>
