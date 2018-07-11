@@ -33,7 +33,6 @@ export class OngoingSprintComponent implements OnInit {
     let count = 0;
     const intervall = setInterval(data => {
       count++;
-      // console.log(this.data);
       // console.log((count * 100) / 1000);
     }, 10);
 
@@ -41,16 +40,11 @@ export class OngoingSprintComponent implements OnInit {
     const setHTML = id => val =>
       (document.getElementById(id).innerHTML =
         (val * 10) / countdownSeconds + '');
-    // const pauseButton = document.querySelector('#pause');
-    // const resumeButton = document.querySelector("#resume");
     const stopButton = document.querySelector('#stop');
     const noCancel = document.querySelector('#noCancel');
     const interval$ = interval(1000).pipe(mapTo(-1));
 
     const vitesse$ = interval(10).pipe(mapTo(-1));
-
-    // const pause$ = fromEvent(pauseButton, 'click').pipe(mapTo(false));
-    // const resume$ = fromEvent(resumeButton, "click").pipe(mapTo(true));
     const stop$ = fromEvent(stopButton, 'click').pipe(mapTo(false));
     const noCancel$ = fromEvent(noCancel, 'click').pipe(mapTo(true));
 
@@ -62,14 +56,13 @@ export class OngoingSprintComponent implements OnInit {
         takeWhile(v => v >= 0)
       ) // if timer is paused return empty observable
       .subscribe(data => {
-        // console.log(count);
         if (data === 0) {
           this.progress = 0;
           this.sprint.current.status = 'Completed';
           clearInterval(intervall);
           this.finsh();
         } else {
-          this.progress = data;
+          this.progress = (data * 100.0) / this.sprint.current.duration;
         }
       });
 
@@ -79,11 +72,20 @@ export class OngoingSprintComponent implements OnInit {
     this.timer$.unsubscribe();
     this.sprint.current.finishedAt = new Date();
     this.sprint.save(this.sprint.current).subscribe();
+    console.log(this.sprint.current.createdAt);
+    console.log(this.sprint.current.startedAt);
+    console.log(this.sprint.current.finishedAt);
+    this.router.navigate(['/sprints']);
   }
   // ------------------------------------------------------------------------------
   ngOnInit() {
+    this.progress = 100;
     this.sprint.current.startedAt = new Date();
-    this.ongoing(10);
+    console.log(this.sprint.current.duration);
+    if (!this.sprint.current.duration) {
+      this.router.navigate(['/new']);
+    }
+    this.ongoing(this.sprint.current.duration);
     // 100 = 1 seconde
     // 200 = 2 seconde
     // 500 = 5 seconde

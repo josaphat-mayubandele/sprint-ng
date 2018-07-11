@@ -1,13 +1,21 @@
-<div>
-    Time remaining: {{progress}} %
-    <span id="remaining"></span>
+<div class="container  gauge-css">
+    <div class="row justify-content-center  py-3">
+
+        <div class="gauge col-sm">
+            <mwl-gauge [max]="100.00" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [value]=progress [animated]="true" [animationDuration]="0">
+            </mwl-gauge>
+        </div>
+
+        <div class="btn-sto col-sm">
+            <!-- Button trigger modal -->
+            <button type="button" id="stop" (click)='pause() ' class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                STOP
+            </button>
+        </div>
+        <div class="col-sm"></div>
+
+    </div>
 </div>
-
-<!-- Button trigger modal -->
-<button type="button" id="stop" (click)='pause()' class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    STOP
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -20,7 +28,7 @@
                 ...
             </div>
             <div class="modal-footer">
-                <button type="button" (click)='cancel()' class="btn btn-secondary" data-dismiss="modal">Yes</button>
+                <button type="button" (click)='cancel() ' class="btn btn-secondary" data-dismiss="modal">Yes</button>
                 <button type="button" id="noCancel" class="btn btn-primary" data-dismiss="modal">No</button>
             </div>
         </div>

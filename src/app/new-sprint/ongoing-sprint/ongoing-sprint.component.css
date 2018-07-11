@@ -1,0 +1,35 @@
+mwl-gauge {
+  width: 300px;
+  height: 0px;
+  display: inline-block;
+  /*padding: 10px;*/
+}
+mwl-gauge > .gauge > .dial {
+  stroke: #eee;
+  /* stroke-width: 2;*/
+  fill: rgba(0, 0, 0, 0);
+}
+mwl-gauge > .gauge > .value {
+  stroke: rgb(47, 227, 255);
+  /* stroke-width: 2;*/
+  fill: rgba(0, 0, 0, 0);
+}
+mwl-gauge > .gauge > .value-text {
+  fill: rgb(47, 227, 255);
+  font-family: sans-serif;
+  font-weight: bold;
+  /*font-size: 1em;*/
+}
+.py-3 {
+  display: inline-block;
+  /*padding: 0 35% 0 35%;*/
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.gauge-css {
+  padding-top: 50px;
+  max-width: 40%;
+}
+.btn-sto {
+  padding: 0 40% 0 40%;
+}

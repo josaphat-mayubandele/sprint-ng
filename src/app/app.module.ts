@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RoutingModule } from './app.routing';
 import { PastSprintsModule } from './past-sprints/past-sprints.module';
@@ -14,8 +15,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NewSprintModule } from './new-sprint/new-sprint.module';
-import { OngoingSprintModule } from './ongoing-sprint/ongoing-sprint.module';
+import { NewSprintModule } from './new-sprint/module/new-sprint.module';
+import { FooterComponent } from './shared/footer/footer.component';
+import { GaugeModule } from 'angular-gauge';
 
 @NgModule({
   declarations: [
@@ -23,17 +25,19 @@ import { OngoingSprintModule } from './ongoing-sprint/ongoing-sprint.module';
     HeaderComponent,
     WelcomeComponent,
     CallbackComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FlexLayoutModule,
     FormsModule,
+    GaugeModule.forRoot(),
     HttpClientModule,
     NewSprintModule,
-    OngoingSprintModule,
     PastSprintsModule,
-    RoutingModule
+    RoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
