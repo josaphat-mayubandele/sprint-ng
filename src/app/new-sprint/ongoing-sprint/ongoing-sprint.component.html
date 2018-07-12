@@ -18,19 +18,22 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
 
-            </div>
             <div class="modal-body">
-                ...
+                <div fxlayout="column" fxlayoutalign="center center" fxlayoutgap="1.25em" style="flex-direction: column;
+                box-sizing: border-box; display: flex; max-width: 100%;
+                place-content: center; align-items: center;">
+                    <h6 class="custom-header" style="text-align: center;">On hold. Cancel sprint?</h6>
+                    <br>
+                    <div class="button-close">
+                        <button type="button" (click)='cancel()' class="btn btn-danger" data-dismiss="modal">Yes</button>
+                        <button type="button" id="noCancel" class="btn btn-outline-success" data-dismiss="modal">No</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" (click)='cancel() ' class="btn btn-secondary" data-dismiss="modal">Yes</button>
-                <button type="button" id="noCancel" class="btn btn-primary" data-dismiss="modal">No</button>
-            </div>
+
+
         </div>
     </div>
-</div>

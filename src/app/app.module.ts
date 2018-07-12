@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NewSprintModule } from './new-sprint/module/new-sprint.module';
 import { FooterComponent } from './shared/footer/footer.component';
 import { GaugeModule } from 'angular-gauge';
+import { PushNotificationsService } from './services/push.notification.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { GaugeModule } from 'angular-gauge';
     RoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService, PushNotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

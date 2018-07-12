@@ -6,7 +6,7 @@ mwl-gauge {
 }
 mwl-gauge > .gauge > .dial {
   stroke: #eee;
-  /* stroke-width: 2;*/
+  /*stroke-width: 2;*/
   fill: rgba(0, 0, 0, 0);
 }
 mwl-gauge > .gauge > .value {
@@ -32,4 +32,10 @@ mwl-gauge > .gauge > .value-text {
 }
 .btn-sto {
   padding: 0 40% 0 40%;
+}
+path.value {
+  stroke: blue;
+}
+button.btn {
+  margin-right: 0.45rem;
 }
