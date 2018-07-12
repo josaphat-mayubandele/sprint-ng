@@ -1,13 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { SprintsService } from "../services/sprints.service";
-import { SprintTemplateService } from "../services/sprint-template.service";
-import { SprintTemplate } from "../models/sprint-template.model";
-import { PastSprints } from "../models/past-sprint.model";
-import { Router } from "@angular/router";
+import {
+  Component,
+  OnInit,
+  Inject,
+  PLATFORM_ID,
+  Injector
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { SprintTemplate } from '../models/sprint-template.model';
+import { PastSprints } from '../models/past-sprint.model';
+import { Router } from '@angular/router';
+import { SprintsService } from '../services/sprints.service';
+import { SprintTemplateService } from '../services/sprint-template.service';
+
 @Component({
-  selector: "app-new-sprint",
-  templateUrl: "./new-sprint.component.html",
-  styleUrls: ["./new-sprint.component.css"]
+  selector: 'app-new-sprint',
+  templateUrl: './new-sprint.component.html',
+  styleUrls: ['./new-sprint.component.css']
 })
 export class NewSprintComponent implements OnInit {
   template: SprintTemplate[] = [];
@@ -22,6 +30,8 @@ export class NewSprintComponent implements OnInit {
   constructor(
     private templateData: SprintTemplateService,
     private sprint: SprintsService,
+    @Inject(PLATFORM_ID) platformId: string,
+    private injector: Injector,
     private router: Router
   ) {}
 
@@ -46,6 +56,6 @@ export class NewSprintComponent implements OnInit {
     this.sprintOption.duration = this.selectedTemplate.duration;
     this.sprint.create(this.sprintOption);
 
-    this.router.navigate(["new/on"]);
+    this.router.navigate(['new/on']);
   }
 }
