@@ -34,12 +34,14 @@ export class OngoingSprintComponent implements OnInit {
    * notify
    */
   notify() {
-    const data: Array<any> = [];
-    data.push({
-      title: 'Sprint',
-      alertContent: 'Your Sprint is finish'
-    });
-    this._notificationService.generateNotification(data);
+    if (this.sprint.current.notify) {
+      const data: Array<any> = [];
+      data.push({
+        title: 'Sprint',
+        alertContent: 'Your Sprint is finish'
+      });
+      this._notificationService.generateNotification(data);
+    }
   }
   /**
    * modal
@@ -96,10 +98,10 @@ export class OngoingSprintComponent implements OnInit {
       ) // if timer is paused return empty observable
       .subscribe(data => {
         if (data === 0) {
-          this.notify();
           this.sprint.current.finishedAt = new Date();
           this.progress = 0;
           const end = setInterval(() => {
+            this.notify();
             this.sprint.current.status = 'Completed';
             this.finsh();
             clearInterval(end);
@@ -108,22 +110,7 @@ export class OngoingSprintComponent implements OnInit {
           this.progress = (data * 100.0) / this.sprint.current.duration;
         }
       });
-
-    // .subscribe(setHTML('remaining'));
   }
-  /*
-  colorGauge(progress) {
-    if (progress < -25) {
-      this.color = '#5ee432';
-    } else if (progress < 0) {
-      this.color = '#fffa50';
-    } else if (progress < 25) {
-      this.color = '#f7aa38';
-    } else {
-      this.color = '#ef4655';
-    }
-  }
-*/
   finsh(): void {
     this.timer$.unsubscribe();
     this.open();
