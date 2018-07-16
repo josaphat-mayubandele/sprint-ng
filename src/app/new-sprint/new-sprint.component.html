@@ -4,7 +4,7 @@
       <div class="col-lg-6 newsprint">
         <h4 class="text-center">New Sprint</h4>
 
-        <form class="needs-validation">
+        <form class="needs-validation" #f="ngForm" novalidate>
 
           <div class="mb-3">
             <label>Length</label>
@@ -15,8 +15,8 @@
 
           <div class="mb-3">
             <label>Description</label>
-            <textarea [(ngModel)]="sprintOption.description" name="sprintDescription" type="text" class="form-control" id="sprintDescription"
-              placeholder="Sprint Description" required=""></textarea>
+            <textarea name="description" [(ngModel)]="sprintOption.description" name="sprintDescription" type="text" class="form-control"
+              id="sprintDescription" placeholder="Sprint Description" #description="ngModel" required></textarea>
             <div class="invalid-feedback">
               Please enter a sprint description.
             </div>

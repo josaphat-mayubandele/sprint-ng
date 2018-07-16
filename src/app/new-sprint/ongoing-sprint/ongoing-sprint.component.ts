@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { interval, Subject, fromEvent, merge, empty, Observable } from 'rxjs';
 import { mapTo, takeWhile, startWith, switchMap, scan } from 'rxjs/operators';
 import { Router } from '@angular/router';
