@@ -5,9 +5,7 @@ import {
   PLATFORM_ID,
   Injector
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { SprintTemplate } from '../models/sprint-template.model';
-import { PastSprints } from '../models/past-sprint.model';
 import { Router } from '@angular/router';
 import { SprintsService } from '../services/sprints.service';
 import { SprintTemplateService } from '../services/sprint-template.service';
@@ -20,7 +18,6 @@ import { SprintTemplateService } from '../services/sprint-template.service';
 export class NewSprintComponent implements OnInit {
   template: SprintTemplate[] = [];
   selectedTemplate: SprintTemplate;
-  // sprintOption: PastSprints = {};
   sprintDescription: any;
   notify: Boolean;
   showValidationAlert: Boolean;
@@ -43,7 +40,7 @@ export class NewSprintComponent implements OnInit {
   // recevoir les sprint de l'utilisateur current
   getTemplate() {
     this.templateData.get().subscribe(data => {
-      this.template = data.pastTemplate;
+      this.template = data;
       console.log(this.template);
     });
   }

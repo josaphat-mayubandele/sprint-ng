@@ -15,10 +15,10 @@ class SprintTemplateController {
   /**
    * GET all sprints.
    */
-  public async getAll(req: Request, res: Response, next: NextFunction) {
+  public async getAll(req: Request, res: Response) {
     try {
       const pastTemplate = await sprintTemplateService.getTemplates();
-      res.json({ pastTemplate });
+      res.send(pastTemplate);
     } catch (err) {
       res.json({
         status: 404
@@ -30,10 +30,10 @@ class SprintTemplateController {
   /**
    * Create all sprint.
    */
-  public async create(req: Request, res: Response, next: NextFunction) {
+  public async create(req: Request, res: Response) {
     try {
       const pastTemplate = await sprintTemplateService.create(req.body);
-      res.json({ pastTemplate });
+      res.send(pastTemplate);
     } catch (err) {
       res.json({
         status: 404
@@ -45,10 +45,10 @@ class SprintTemplateController {
   /**
    * delete on sprint.
    */
-  public async deleteOne(req: Request, res: Response, next: NextFunction) {
+  public async deleteOne(req: Request, res: Response) {
     try {
       const pastTemplate = await sprintTemplateService.delete(req.body);
-      res.json({ pastTemplate });
+      res.send(pastTemplate);
     } catch (err) {
       res.json({
         status: 404

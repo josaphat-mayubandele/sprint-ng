@@ -21,10 +21,10 @@ export class SprintsService {
   }
   // envoie current sprint dans le back end
   // pour etre saver dans la base de donnees
-  save(current: PastSprints): Observable<any> {
+  save(current: PastSprints): Observable<PastSprints[]> {
     current.user = this.auth.userId();
     console.log('save');
-    return this.http.put<any>(
+    return this.http.put<PastSprints[]>(
       `${this.apiUrl}/create/${this.auth.userId()}`,
       current,
       {
@@ -36,20 +36,11 @@ export class SprintsService {
     );
   }
   // get past sprint for a user
-  get(): Observable<any> {
+  get(): Observable<PastSprints[]> {
     console.log(this.auth.userId());
     // recevoir les sprint de l'utilisateur current
-    return this.http.get<any>(`${this.apiUrl}/get/${this.auth.userId()}`, {
-      headers: new HttpHeaders().set(
-        'Authorization',
-        `Bearer ${localStorage.getItem('access_token')}`
-      )
-    });
-  }
-  // delete all sprint for a user
-  deleteAll(): Observable<any> {
-    return this.http.delete<any>(
-      `${this.apiUrl}/delete/${this.auth.userId()}`,
+    return this.http.get<PastSprints[]>(
+      `${this.apiUrl}/get/${this.auth.userId()}`,
       {
         headers: new HttpHeaders().set(
           'Authorization',
@@ -57,5 +48,14 @@ export class SprintsService {
         )
       }
     );
+  }
+  // delete all sprint for a user
+  deleteAll() {
+    return this.http.delete(`${this.apiUrl}/delete/${this.auth.userId()}`, {
+      headers: new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${localStorage.getItem('access_token')}`
+      )
+    });
   }
 }

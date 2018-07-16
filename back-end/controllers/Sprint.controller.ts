@@ -15,12 +15,14 @@ class SprintController {
   /**
    * getAll all Sprint.
    */
-  public async getAll(req: Request, res: Response, next: NextFunction) {
+  public async getAll(req: Request, res: Response) {
     try {
       const { userId } = req.params;
       // const userId = req.params.user;
       const pastsprint = await sprintService.getSprints(`${userId}`);
-      res.json({ pastsprint });
+      // const jsonContent = await JSON.parse(pastsprint);
+      res.send(pastsprint);
+      // res.json({ jsonContent });
     } catch (err) {
       res.json({
         status: 404
@@ -30,14 +32,19 @@ class SprintController {
   }
 
   /**
+   *
    * create all Sprint.
+   *
+   * @param req requete
+   * @param res reponse
+   * @param next
    */
-  public create(req: Request, res: Response, next: NextFunction) {
+  public create(req: Request, res: Response) {
     try {
       console.log(req.body);
 
       const pastsprint = sprintService.create(req.body);
-      res.json({ pastsprint });
+      res.send(pastsprint);
     } catch (err) {
       res.json({
         status: 404
@@ -49,15 +56,13 @@ class SprintController {
   /**
    * deleted all Sprint.
    */
-  public deleteAll(req: Request, res: Response, next: NextFunction) {
+  public deleteAll(req: Request, res: Response) {
     try {
       const { userId } = req.params;
       console.log(userId);
       const pastsprint = sprintService.deleteAll(`${userId}`);
-      // console.log('delete all sprint run');
-      res.json(pastsprint);
-      // res.send(pastsprint);
-      // res.send('fini');
+      console.log('delete all sprint run');
+      res.json({ status: 200 });
     } catch (err) {
       res.json({
         status: 404
