@@ -18,6 +18,6 @@ import { GaugeModule } from 'angular-gauge';
     FormatSecondsPipe,
     ModalComponent
   ],
-  bootstrap: [ModalComponent]
+  bootstrap: [NewSprintComponent, ModalComponent]
 })
 export class NewSprintModule {}
